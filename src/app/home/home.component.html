@@ -1,0 +1,53 @@
+<div class="container">
+  <!-- <app-sidebar></app-sidebar> -->
+  <!-- <div class="content"> -->
+  <div style="text-align: center;">
+    <h2>Welcome to the Financial Planner Page!</h2>
+  </div>
+  <div style="padding: 20px; text-align: right;">
+    <button class="button-23" type="button" (click)="add()" style="width: 100px;">Add</button>
+    <button class="button-26" type="button" (click)="resetAutoIncreament()" style="width: 200px;">ResetAutoIncreament</button>
+  </div>
+  <div style="width: 100%; display: block; overflow-x:auto; ">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th style="width: 150px;"></th>
+          <th>FinancialInfoID</th>
+          <th>InfoTopic</th>
+          <th>Salary</th>
+          <th>Use</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of datas">
+          <td style="display: flex; gap: 10px;">
+            <button class="button-23" type="button" (click)="editBtn(data.financialInfoId)">Edit</button>
+            <button class="button-24" type="button" (click)="removeBtn(data.financialInfoId)">Remove</button>
+            <button class="button-25" type="button" (click)="duplicateBtn(data.financialInfoId)">Duplicate</button>
+          </td>
+          <td>
+            <span>{{data.financialInfoId}}</span>
+          </td>
+          <td>
+            <span>{{data.infoTopic}}</span>
+          </td>
+          <td>
+            <span>{{data.salary}}</span>
+          </td>
+          <td>
+            <span>{{data.use}}</span>
+          </td>
+          <td>
+            <span>{{data.balance}}</span>
+          </td>
+        </tr>
+        <tr *ngIf="datas.length <= 0">
+          <td colspan="11">No data</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- </div> -->
+</div>

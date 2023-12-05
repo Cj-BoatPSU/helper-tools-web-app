@@ -49,68 +49,7 @@ export class DetailComponent implements OnInit {
     ],
     financialDetailList: []
   };
-  // data: FinancialDetailScreenModel = {
-  //   financialInfoId: 1,
-  //   infoTopic: 'December 2023',
-  //   salary: 55000,
-  //   use: 0,
-  //   balance: 0,
-  //   financialTypeList: [
-  //     {
-  //       typeId: 1,
-  //       type: 'Need',
-  //       percent: 50,
-  //       value: 0,
-  //       financialInfoId: 1,
-  //       use: 0,
-  //       balance: 0
-  //     },
-  //     {
-  //       typeId: 2,
-  //       type: 'Want',
-  //       percent: 30,
-  //       value: 0,
-  //       financialInfoId: 1,
-  //       use: 0,
-  //       balance: 0
-  //     },
-  //     {
-  //       typeId: 3,
-  //       type: 'Saving',
-  //       percent: 20,
-  //       value: 0,
-  //       financialInfoId: 1,
-  //       use: 0,
-  //       balance: 0
-  //     }
-  //   ],
-  //   financialDetailList: [
-  //     {
-  //       financialDetailId: 1,
-  //       financialInfoId: 1,
-  //       typeId: 1,
-  //       topic: 'ให้น้อง',
-  //       amount: 3000,
-  //       _IsEdit: false
-  //     },
-  //     {
-  //       financialDetailId: 2,
-  //       financialInfoId: 1,
-  //       typeId: 2,
-  //       topic: 'งบเที่ยว',
-  //       amount: 4000,
-  //       _IsEdit: false
-  //     },
-  //     {
-  //       financialDetailId: 3,
-  //       financialInfoId: 1,
-  //       typeId: 3,
-  //       topic: 'เก็บ',
-  //       amount: 5000,
-  //       _IsEdit: false
-  //     }
-  //   ]
-  // };
+
   mode: 'add' | 'edit' = 'add';
   private _id: string = '';
   _isEdit_Salary: boolean = false;
@@ -202,6 +141,7 @@ export class DetailComponent implements OnInit {
       typeId: 1, //default
       topic: '',
       amount: 0,
+      alreadyPaid: false,
       _IsEdit: true
     };
 

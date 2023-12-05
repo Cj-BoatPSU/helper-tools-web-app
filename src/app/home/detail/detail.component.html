@@ -7,7 +7,6 @@
         <h1>Financial Detail</h1>
     </div>
     <div class="infoTopic">
-        <!-- <p style="font-size: 50px; font-weight: bold;">{{data.infoTopic}}</p> -->
         <input type="text" class="input-infoTopic"  [(ngModel)]="data.infoTopic" style="font-size: 50px; font-weight: bold;"/>
     </div>
     <div class="salary-container">
@@ -66,6 +65,7 @@
                     <th>typeId</th>
                     <th>Topic</th>
                     <th>Amount (Bath)</th>
+                    <th>Already Paid</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,6 +99,10 @@
                     </td>
                     <td>
                         <input type="number" class="input-detail" [(ngModel)]="item.amount" [disabled]="!item._IsEdit" />
+                    </td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="item.alreadyPaid"/> 
+                        <!-- <input type="checkbox" [(ngModel)]="item.alreadyPaid" [disabled]="!item._IsEdit" /> -->
                     </td>
                 </tr>
                 <tr *ngIf="data.financialDetailList.length <= 0">

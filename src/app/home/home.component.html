@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of datas">
+        <tr *ngFor="let data of datas" [ngStyle]="{'background-color': data.isCompleted ? 'lightgreen' : 'none'}"> 
           <td style="display: flex; gap: 10px;">
             <button class="button-23" type="button" (click)="editBtn(data.financialInfoId)">Edit</button>
             <button class="button-24" type="button" (click)="removeBtn(data.financialInfoId)">Remove</button>

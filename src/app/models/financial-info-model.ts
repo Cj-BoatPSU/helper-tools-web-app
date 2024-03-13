@@ -4,4 +4,5 @@ export interface FinancialInfoModel {
 	salary: number;
 	use: number;
 	balance: number;
+	isCompleted: boolean;
 }

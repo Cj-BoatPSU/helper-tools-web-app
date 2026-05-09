@@ -1,276 +1,350 @@
+/* ===== NAVY THEME - detail.component.css ===== */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+/* ---------- Layout ---------- */
 .container {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #0d1b2e;
+  min-height: 100vh;
+  font-family: 'Sarabun', sans-serif;
+  color: #ffffff;
+  padding: 24px;
 }
 
 .title {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.title h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .infoTopic {
   text-align: center;
+  margin-bottom: 16px;
 }
 
+/* ---------- Salary row ---------- */
 .salary-container {
   display: flex;
   flex-direction: row;
-  margin: 20px;
-  gap: 20px;
-  align-items: center
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin: 0 0 24px;
+  background: #132340;
+  border: 1px solid #1e3a6e;
+  border-radius: 12px;
+  padding: 16px 20px;
 }
 
 .salary-value {
   text-align: center;
-  height: 30px;
-  font-size: 20px;
-}
-
-.button-23 {
-  background: #2c974b;
-  border: 1px solid #2c974b;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  height: 36px;
   font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
+  font-weight: 600;
+  font-family: 'Sarabun', sans-serif;
+  background: #1a2f55;
+  border: 1px solid #244a8a;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 0 12px;
+  width: 140px;
+  outline: none;
 }
 
-.button-23:hover,
-.button-23:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: #2c974b;
+.salary-value:disabled {
+  opacity: 0.6;
+  background: #132340;
 }
 
-.button-23:active {
-  opacity: .5;
+.salary-value:focus {
+  border-color: #3a72c7;
 }
 
-.button-24 {
-  background: yellow;
-  border: 1px solid yellow;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-}
-
-.button-24:hover,
-.button-24:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: yellow;
-}
-
-.button-24:active {
-  opacity: .5;
-}
-
+/* ---------- Type Summary Table ---------- */
 .type-container {
-  width: 50%;
+  width: 60%;
   display: block;
-  margin: 20px;
-  border: 1px solid black;
+  margin: 0 0 20px;
+  border: 1px solid #1e3a6e;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .fl-table {
-  border-radius: 5px;
-  font-size: 12px;
+  border-radius: 0;
+  font-size: 13px;
   font-weight: normal;
   border: none;
   border-collapse: collapse;
   width: 100%;
   max-width: 100%;
   white-space: nowrap;
-  background-color: white;
+  background-color: #132340;
 }
 
 .fl-table td,
 .fl-table th {
   text-align: center;
-  padding: 8px;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  font-size: 20px;
+  padding: 10px 14px;
+  border-right: 1px solid #1e3a6e;
+  border-bottom: 1px solid #1e3a6e;
+  font-size: 14px;
+  color: #ffffff;
 }
 
 .fl-table thead th {
-  color: #ffffff;
-  background: green;
-  font-size: 20px;
+  color: #a8c4eb;
+  background: #1a2f55;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* ---------- Detail Table ---------- */
 .detail-container {
   width: 100%;
   display: block;
   overflow-x: auto;
-  margin: 20px;
-  border: 1px solid black;
+  margin: 0 0 20px;
+  border: 1px solid #1e3a6e;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .detail-table {
-  border-radius: 5px;
-  font-size: 12px;
+  border-radius: 0;
+  font-size: 13px;
   font-weight: normal;
   border: none;
   border-collapse: collapse;
   width: 100%;
   max-width: 100%;
   white-space: nowrap;
-  background-color: white;
+  background-color: #132340;
 }
 
 .detail-table td,
 .detail-table th {
   text-align: center;
-  padding: 8px;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  font-size: 20px;
+  padding: 10px 14px;
+  border-right: 1px solid #1e3a6e;
+  border-bottom: 1px solid #1e3a6e;
+  font-size: 14px;
+  color: #ffffff;
 }
 
 .detail-table thead th {
-  color: #ffffff;
-  background: #324960;
-  font-size: 20px;
+  color: #a8c4eb;
+  background: #1a2f55;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.add-container {
-  margin: 20px;
-  text-align: right;
+.detail-table tbody tr:hover {
+  background-color: #1a2f55;
 }
 
-.button-25 {
-  background: black;
-  border: 1px solid black;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-}
-
-.button-25:hover,
-.button-25:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: none;
-}
-
-.button-25:active {
-  opacity: .5;
-}
-
-.bottom-container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: center;
-  margin: 20px;
-}
-
-.button-26 {
-  background: red;
-  border: 1px solid red;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-}
-
-.button-26:hover,
-.button-26:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: red;
-}
-
-.button-26:active {
-  opacity: .5;
-}
-
+/* ---------- Inputs inside table ---------- */
 .input-detail {
   text-align: center;
-  height: 30px;
-  font-size: 20px;
+  height: 32px;
+  font-size: 14px;
+  font-family: 'Sarabun', sans-serif;
   width: 80%;
-  height: 30px;
+  background: #1a2f55;
+  border: 1px solid #244a8a;
+  border-radius: 6px;
+  color: #ffffff;
+  outline: none;
+  padding: 0 8px;
+}
+
+.input-detail:disabled {
+  background: transparent;
+  border-color: transparent;
+}
+
+.input-detail:focus {
+  border-color: #3a72c7;
 }
 
 .input-infoTopic {
   text-align: center;
   border: none;
+  background: transparent;
+  color: #ffffff;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  outline: none;
+  border-bottom: 2px solid #244a8a;
+  width: 100%;
 }
 
+.input-infoTopic:focus {
+  border-bottom-color: #3a72c7;
+}
+
+/* ---------- Add row ---------- */
+.add-container {
+  margin: 0 0 12px;
+  text-align: right;
+}
+
+/* ---------- Bottom ---------- */
+.bottom-container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* ---------- Buttons ---------- */
+/* Green – Edit / Calculate */
+.button-23 {
+  background: #1a5c38;
+  border: 1px solid #2ecc71;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #2ecc71;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  min-height: 36px;
+  outline: 0;
+  padding: 6px 14px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  transition: background .15s;
+}
+.button-23:hover,
+.button-23:active {
+  background: #246647;
+}
+.button-23:active { opacity: .8; }
+
+/* Yellow – Save */
+.button-24 {
+  background: #5c3a00;
+  border: 1px solid #f39c12;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #f39c12;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  min-height: 36px;
+  outline: 0;
+  padding: 6px 14px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  transition: background .15s;
+}
+.button-24:hover,
+.button-24:active {
+  background: #6e4800;
+}
+.button-24:active { opacity: .8; }
+
+/* Dark – Add / Return */
+.button-25 {
+  background: #1a2f55;
+  border: 1px solid #244a8a;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #a8c4eb;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  min-height: 36px;
+  outline: 0;
+  padding: 6px 14px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  transition: background .15s;
+}
+.button-25:hover,
+.button-25:active {
+  background: #1e3a6e;
+}
+.button-25:active { opacity: .8; }
+
+/* Red – Delete */
+.button-26 {
+  background: #5c1a1a;
+  border: 1px solid #e74c3c;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #e74c3c;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  min-height: 36px;
+  outline: 0;
+  padding: 6px 14px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  transition: background .15s;
+}
+.button-26:hover,
+.button-26:active {
+  background: #6e2020;
+}
+.button-26:active { opacity: .8; }
+
+/* ---------- Custom Checkbox ---------- */
 .checkbox-wrapper-18 .round {
   position: relative;
 }
 
 .checkbox-wrapper-18 .round label {
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #132340;
+  border: 1px solid #244a8a;
   border-radius: 50%;
   cursor: pointer;
   height: 28px;
@@ -278,8 +352,8 @@
   display: block;
 }
 
-.checkbox-wrapper-18 .round label:after {
-  border: 2px solid #fff;
+.checkbox-wrapper-18 .round label::after {
+  border: 2px solid #0d1b2e;
   border-top: none;
   border-right: none;
   content: "";
@@ -298,11 +372,11 @@
   opacity: 0;
 }
 
-.checkbox-wrapper-18 .round input[type="checkbox"]:checked+label {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
+.checkbox-wrapper-18 .round input[type="checkbox"]:checked + label {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
 }
 
-.checkbox-wrapper-18 .round input[type="checkbox"]:checked+label:after {
+.checkbox-wrapper-18 .round input[type="checkbox"]:checked + label::after {
   opacity: 1;
 }

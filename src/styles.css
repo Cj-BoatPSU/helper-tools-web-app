@@ -1,9 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles - Financial Planner */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap');
+
 body {
-    background-image: linear-gradient(to bottom right, #000428, #004e92);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+  background: linear-gradient(135deg, #e8f0fe 0%, #f0f7ff 50%, #e0f2fe 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Sarabun', Roboto, 'Helvetica Neue', sans-serif;
+  color: #1e2d4a;
+}

@@ -3,12 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FinancialDetailScreenModel } from '../../models/financial-detail-screen-model';
 import { FinancialDetailModel } from '../../models/financial-detail-model';
 import { FinancialService } from '../../service/financial.service';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
 
@@ -19,53 +18,30 @@ export class DetailComponent implements OnInit {
     use: 0,
     balance: 0,
     financialTypeList: [
-      {
-        typeId: 1,
-        type: 'Need',
-        percent: 50,
-        value: 0,
-        financialInfoId: 0,
-        use: 0,
-        balance: 0
-      },
-      {
-        typeId: 2,
-        type: 'Want',
-        percent: 30,
-        value: 0,
-        financialInfoId: 0,
-        use: 0,
-        balance: 0
-      },
-      {
-        typeId: 3,
-        type: 'Saving',
-        percent: 20,
-        value: 0,
-        financialInfoId: 0,
-        use: 0,
-        balance: 0
-      }
+      { typeId: 1, type: 'Need',   percent: 50, value: 0, financialInfoId: 0, use: 0, balance: 0 },
+      { typeId: 2, type: 'Want',   percent: 30, value: 0, financialInfoId: 0, use: 0, balance: 0 },
+      { typeId: 3, type: 'Saving', percent: 20, value: 0, financialInfoId: 0, use: 0, balance: 0 },
     ],
-    financialDetailList: []
+    financialDetailList: [],
   };
 
   mode: 'add' | 'edit' = 'add';
   private _id: string = '';
   _isEdit_Salary: boolean = false;
 
-  constructor(private arouter: ActivatedRoute, private router: Router, private _service: FinancialService) {
+  constructor(
+    private arouter: ActivatedRoute,
+    private router: Router,
+    private _service: FinancialService
+  ) {
     this.arouter.params.subscribe(res => {
-      if (res.id) {
+      if (res['id']) {
         this.mode = 'edit';
-        this._id = res.id
-      }
-      else {
+        this._id = res['id'];
+      } else {
         this.mode = 'add';
       }
-    })
-    console.log('mode: ', this.mode);
-    console.log('_id: ', this._id);
+    });
   }
 
   ngOnInit(): void {
@@ -77,104 +53,123 @@ export class DetailComponent implements OnInit {
       el._IsEdit = false;
     });
 
-    this.data.financialTypeList.forEach(el => {
-      el.value = this.data.salary * (el.percent / 100);
-    });
+    this._recalcTypeValues();
   }
 
-  private async _loadData() {
-    this._service.getFinancialDetail(this._id).subscribe(async res => {
+  // ---- Data ----
+
+  private _loadData(): void {
+    this._service.getFinancialDetail(this._id).subscribe(res => {
       this.data = res as any;
     });
   }
 
-  back() {
+  // ---- Navigation ----
+
+  back(): void {
     this.router.navigateByUrl('/home');
   }
 
-  editSalary() {
+  // ---- Salary ----
+
+  editSalary(): void {
     this._isEdit_Salary = true;
   }
 
-  saveSalary() {
+  saveSalary(): void {
     this._isEdit_Salary = false;
     this.cal();
   }
 
-  editDetail(data: FinancialDetailModel) {
+  // ---- Detail row actions ----
+
+  editDetail(data: FinancialDetailModel): void {
     data._IsEdit = true;
   }
 
-  reserveBtn(data: FinancialDetailModel) {
+  saveChangeDetail(data: FinancialDetailModel): void {
+    data._IsEdit = false;
+    this.cal();
+  }
+
+  reserveBtn(data: FinancialDetailModel): void {
     data._IsEdit = false;
   }
 
-  async cal() {
-    //reset
+  remove(data: FinancialDetailModel): void {
+    this.data.financialDetailList = this.data.financialDetailList.filter(
+      o => o.financialDetailId !== data.financialDetailId
+    );
+    this.cal();
+  }
+
+  add(): void {
+    const newItem: FinancialDetailModel = {
+      financialDetailId: 0,
+      financialInfoId: this.data.financialInfoId,
+      typeId: 1,
+      topic: '',
+      amount: 0,
+      alreadyPaid: false,
+      _IsEdit: true,
+    };
+    this.data.financialDetailList.push(newItem);
+  }
+
+  // ---- Calculate ----
+
+  cal(): void {
+    // Reset totals
     this.data.use = 0;
     this.data.balance = 0;
-    await this.data.financialTypeList.forEach(el => {
-      el.value = Number((this.data.salary * (el.percent / 100)).toFixed(0));
-      el.use = 0;
-      el.balance = 0;
-    });
-    //calcurate
-    await this.data.financialDetailList.forEach(el => {
-      this.data.use = Number((this.data.use + el.amount).toFixed(2));
-    });
-    this.data.use = Number((this.data.use).toFixed(2));
+    this._recalcTypeValues();
+
+    // Sum up all expenses
+    this.data.use = Number(
+      this.data.financialDetailList
+        .reduce((sum, el) => sum + el.amount, 0)
+        .toFixed(2)
+    );
     this.data.balance = Number((this.data.salary - this.data.use).toFixed(2));
 
-    await this.data.financialTypeList.forEach(el => {
-      let type: FinancialDetailModel[] = this.data.financialDetailList.filter(o => o.typeId == el.typeId);
-      type.forEach(item => {
-        el.use = Number((el.use + item.amount).toFixed(2));
-      });
+    // Sum per type
+    this.data.financialTypeList.forEach(el => {
+      const matchedItems = this.data.financialDetailList.filter(
+        o => o.typeId == el.typeId
+      );
+      el.use = Number(
+        matchedItems.reduce((sum, item) => sum + item.amount, 0).toFixed(2)
+      );
       el.balance = Number((el.value - el.use).toFixed(2));
     });
   }
 
-  add() {
-    let new_item: FinancialDetailModel = {
-      financialDetailId: 0,
-      financialInfoId: this.data.financialInfoId,
-      typeId: 1, //default
-      topic: '',
-      amount: 0,
-      alreadyPaid: false,
-      _IsEdit: true
-    };
+  // ---- Save ----
 
-    this.data.financialDetailList.push(new_item);
-  }
+  async save(): Promise<void> {
+    this.cal();
 
-  async save() {
-    await this.cal();
-    console.log('data: ', this.data);
     if (this.mode === 'edit') {
-      this._service.saveFinancialDetail(this.data).subscribe(async res => {
+      this._service.saveFinancialDetail(this.data).subscribe(res => {
         this.data = res as any;
+        alert('Save Success');
       });
     }
 
     if (this.mode === 'add') {
-      this._service.createFinancialInfo(this.data).subscribe(async res => {
-        this.data = res as any;
+      this._service.createFinancialInfo(this.data).subscribe(() => {
+        this.router.navigateByUrl('home');
       });
-
-      this.router.navigateByUrl(`home`);
     }
-
-    // alert("Save Success");
   }
 
-  remove(data: FinancialDetailModel) {
-    this.data.financialDetailList = this.data.financialDetailList.filter(o => o.financialDetailId != data.financialDetailId);
-    this.cal();
-  }
+  // ---- Private helpers ----
 
-  saveChangeDetail(data: FinancialDetailModel) {
-    data._IsEdit = false;
-    this.cal();
+  private _recalcTypeValues(): void {
+    this.data.financialTypeList.forEach(el => {
+      el.value = Number((this.data.salary * (el.percent / 100)).toFixed(0));
+      el.use = 0;
+      el.balance = 0;
+    });
   }
 }
